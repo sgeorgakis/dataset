@@ -1,0 +1,46 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+logging:
+    level:
+        ROOT: DEBUG
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: webapp
+  datasource:
+    url: jdbc:h2:mem:app_db;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
+
+# ===================================================================
+# Application specific properties
+# ===================================================================
+application:
+  async:
+    core-pool-size: 2
+    max-pool-size: 10
+    queue-capacity: 100
